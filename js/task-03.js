@@ -14,13 +14,19 @@ alt: 'Group of Horses Running',
 ];
 
 const galleryList = document.getElementById(`gallery`)
-console.dir(galleryList);
 
-images.forEach(element => {
-    galleryList.insertAdjacentHTML(
-        "afterbegin",  `<li><img src = "${element.url}" alt = "${element.alt}"  width = "300" height = "200" /></li>`,
-    )
+const getElem = images.map(object => {
+    const { url, alt } = object
+    const element = `<li><img src = "${url}" alt = "${alt}"  width = "300" height = "200" /></li>`
+    return(element)
+
 });
+console.log(getElem.join(``));
+
+galleryList.insertAdjacentHTML(
+        "afterbegin",  getElem,
+    )
+
 galleryList.style.listStyle = `none`
 galleryList.style.display = `flex`
 galleryList.style.marginTop = `100px`
